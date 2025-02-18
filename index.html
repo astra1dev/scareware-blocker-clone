@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Scareware Blocker</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            text-align: center;
+            /* transition: background-color 0.3s, color 0.3s; */
+        }
+        img {
+            width: 100px;
+            height: auto;
+        }
+        h1 {
+            color: #333;
+        }
+        p {
+            color: #666;
+        }
+        .buttons {
+            margin-top: 20px;
+        }
+        .buttons button {
+            padding: 10px 20px;
+            margin: 5px;
+            border-radius: 7px;
+            cursor: pointer;
+            font-weight: bold;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        .continue-button {
+            background-color: #f4f4f4;
+            color: #333;
+            border: 1px solid #D5D5D5;
+        }
+        .close-button {
+            background-color: #007BFF;
+            color: white;
+            border: 3px solid #FFFFFF;
+        }
+        .dark-mode-toggle {
+            margin-top: 20px;
+            cursor: pointer;
+            color: #007BFF;
+            text-decoration: underline;
+        }
+        body.dark-mode {
+            background-color: #3B3B3B;
+            color: #f4f4f4;
+        }
+        body.dark-mode h1 {
+            color: #f4f4f4;
+        }
+        body.dark-mode p {
+            color: #ccc;
+        }
+        body.dark-mode .continue-button {
+            background-color: #333;
+            color: #f4f4f4;
+            border: 1px solid #f4f4f4;
+        }
+    </style>
+</head>
+<body>
+    <img id="danger-image" src="danger.png" alt="Danger">
+    <h1>This site looks suspicious</h1>
+    <p>We suggest avoiding this page. We've blocked it to keep<br>you safe from scams. Would you like to continue?</p>
+    <div class="buttons">
+        <button class="continue-button" onclick="continueAction()">Continue</button>
+        <button class="close-button" onclick="closePage()">Close page</button>
+    </div>
+    <div class="dark-mode-toggle" onclick="toggleDarkMode()">Toggle Dark Mode</div>
+
+    <script>
+        function toggleDarkMode() {
+            document.body.classList.toggle('dark-mode');
+            const img = document.getElementById('danger-image');
+            // if there are different icons for dark / light mode, change the src
+            if (document.body.classList.contains('dark-mode')) {
+                img.src = 'danger.png';
+            } else {
+                img.src = 'danger.png';
+            }
+        }
+
+        function closePage() {
+            window.close();
+        }
+
+        function continueAction() {
+            // Do nothing
+        }
+
+        // Check the user's system preference for dark mode
+        if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+            document.body.classList.add('dark-mode');
+            document.getElementById('danger-image').src = 'danger.png';
+        }
+    </script>
+</body>
+</html>
